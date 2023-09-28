@@ -1,0 +1,18 @@
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        def dfs(matrix, visited, curr):
+            for i in range(len(matrix)):
+                if matrix[curr][i] == 1 and not visited[i]:
+                    visited[i] = True
+                    dfs(matrix, visited, i)
+                    
+        count = 0
+        visited = [False] * len(isConnected)
+        
+        for i in range(len(isConnected)):
+            if not visited[i]:
+                dfs(isConnected, visited, i)
+                count += 1
+                
+        return count
+        
